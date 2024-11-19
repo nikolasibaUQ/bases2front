@@ -1,5 +1,6 @@
+import 'package:bases2/features/auth/presentation/pages/login_pg.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,17 +12,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      debugShowMaterialGrid: false,
+      title: 'Bases de datos',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Placeholder(
-        child: Container(
-            color: Colors.deepPurple,
-            child: Center(child: const Text('Hello World'))),
-      ),
+      home: const LoginPage(),
     );
   }
 }
