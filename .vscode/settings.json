@@ -3,28 +3,6 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit"
   },
-  "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true,
-    "**/Thumbs.db": true,
-    "**/*.freezed.dart": true,
-    "**/*.g.dart": true,
-    "**/*.mocks.dart": true
-  },
-  "java.configuration.updateBuildConfiguration": "interactive",
-  "flutter-coverage.coverageFileNames": [
-    "lcov.info",
-    "cov.xml",
-    "coverage.xml",
-    "jacoco.xml"
-  ],
-  "flutter-coverage.coverageFilePaths": [
-    "coverage"
-  ],
-  "flutter-coverage.lowCoverageThreshold": 50,
-  "flutter-coverage.sufficientCoverageThreshold": 70,
-  "dart.flutterSdkPath": ".fvm/versions/3.22.3"
+  
+
 }

@@ -4,7 +4,16 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "name": "Flutter Web (Chrome)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+              "--web-browser-flag=--disable-web-security",              
+              "--web-renderer=html"
+            ]
+        },
         {
             "name": "bases2",
             "request": "launch",

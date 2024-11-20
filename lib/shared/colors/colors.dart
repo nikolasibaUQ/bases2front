@@ -11,9 +11,9 @@ class MyColors {
   static final violetBlue = HexColor('#43398E');
   static final darkGray = HexColor('#707070');
   static final gray = HexColor('#8B8989');
+  static final darkWhite = HexColor('#F7F7F7');
 
   // static final blueGreen = HexColor('#30C3A3');
-  // static final darkWhite = HexColor('#F7F7F7');
   // static final grayViolet = HexColor('#E5E4EC');
   // static final mediumGray = HexColor('#585858');
   // static final lightGray = HexColor('#CCCCCC');

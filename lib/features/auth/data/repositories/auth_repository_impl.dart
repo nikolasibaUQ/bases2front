@@ -1,17 +1,35 @@
+import 'package:bases2/core/either/either.dart';
+import 'package:bases2/features/auth/data/datasources/local/local_auth.dart';
 import 'package:bases2/features/auth/data/datasources/remote/auth_api.dart';
+import 'package:bases2/features/auth/domain/entities/user_data.dart';
 import 'package:bases2/features/auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthApi authApi;
+  final LocalAuth localAuth;
 
-  AuthRepositoryImpl({required this.authApi});
+  AuthRepositoryImpl({
+    required this.localAuth,
+    required this.authApi,
+  });
   @override
-  Future login(String email, String password) {
-    return authApi.login(email, password);
+  Future<Either<Exception, UserData>> login(
+      String email, String password) async {
+    return await authApi.login(email, password);
   }
 
   @override
-  Future register() {
+  Future<Either<Exception, dynamic>> register() {
     throw UnimplementedError();
+  }
+
+  @override
+  Future<UserData?> getUserData() async {
+    return await localAuth.getSession();
+  }
+
+  @override
+  Future<bool> saveUserData(UserData userData) async {
+    return await localAuth.saveSession(userData);
   }
 }

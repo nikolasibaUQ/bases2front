@@ -1,3 +1,4 @@
+import 'package:bases2/features/acount/presentation/pages/account_pg.dart';
 import 'package:bases2/features/home/presentation/pages/home_pg.dart';
 import 'package:bases2/features/inventories/presentation/inventories_pg.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,8 @@ class MainViewModel extends GetxController {
         return HomePage();
       case 1:
         return const InventoriesPage();
+      case 2:
+        return const AccountPage();
       default:
         return const Text('Home');
     }
