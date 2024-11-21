@@ -96,6 +96,12 @@ class MegaMenuAppbar extends StatelessWidget {
             onTap: () => mainViewModel.modifyIndex(2),
             title: Text('Mi cuenta', style: style),
           ),
+          SizedBox(height: responsive.hp(5)),
+          ListTile(
+            titleTextStyle: style,
+            onTap: () => mainViewModel.modifyIndex(3),
+            title: Text('Mis referidos', style: style),
+          ),
         ],
       ),
     );

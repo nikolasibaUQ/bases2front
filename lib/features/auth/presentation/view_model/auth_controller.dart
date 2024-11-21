@@ -60,7 +60,7 @@ class AuthController extends GetxController {
 
         Get.snackbar(
           'Bienvenido',
-          'Es un placer verte aqui ${rigth.name! + rigth.lastName!}',
+          'Es un placer verte aqui ${rigth.name + rigth.lastName}',
           backgroundColor: Colors.green,
         );
         Future.delayed(

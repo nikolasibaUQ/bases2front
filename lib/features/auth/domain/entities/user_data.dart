@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final userData = userDataFromJson(jsonString);
-
 import 'dart:convert';
 
 UserData userDataFromJson(String str) => UserData.fromJson(json.decode(str));
@@ -9,24 +5,30 @@ UserData userDataFromJson(String str) => UserData.fromJson(json.decode(str));
 String userDataToJson(UserData data) => json.encode(data.toJson());
 
 class UserData {
-  String? message;
-  String? id;
-  String? name;
-  String? lastName;
-  String? email;
-  String? phone;
-  String? street;
-  int? ciudad;
+  String message;
+  String id;
+  String name;
+  String lastName;
+  String email;
+  String phone;
+  String street;
+  String ciudad;
+  String nivel;
+  int idnivel;
+  int comision;
 
   UserData({
-    this.message,
-    this.id,
-    this.name,
-    this.lastName,
-    this.email,
-    this.phone,
-    this.street,
-    this.ciudad,
+    required this.message,
+    required this.id,
+    required this.name,
+    required this.lastName,
+    required this.email,
+    required this.phone,
+    required this.street,
+    required this.ciudad,
+    required this.nivel,
+    required this.idnivel,
+    required this.comision,
   });
 
   UserData copyWith({
@@ -37,7 +39,10 @@ class UserData {
     String? email,
     String? phone,
     String? street,
-    int? ciudad,
+    String? ciudad,
+    String? nivel,
+    int? idnivel,
+    int? comision,
   }) =>
       UserData(
         message: message ?? this.message,
@@ -48,6 +53,9 @@ class UserData {
         phone: phone ?? this.phone,
         street: street ?? this.street,
         ciudad: ciudad ?? this.ciudad,
+        nivel: nivel ?? this.nivel,
+        idnivel: idnivel ?? this.idnivel,
+        comision: comision ?? this.comision,
       );
 
   factory UserData.fromJson(Map<String, dynamic> json) => UserData(
@@ -59,6 +67,9 @@ class UserData {
         phone: json["phone"],
         street: json["street"],
         ciudad: json["ciudad"],
+        nivel: json["nivel"],
+        idnivel: json["idnivel"],
+        comision: json["comision"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -70,5 +81,8 @@ class UserData {
         "phone": phone,
         "street": street,
         "ciudad": ciudad,
+        "nivel": nivel,
+        "idnivel": idnivel,
+        "comision": comision,
       };
 }
