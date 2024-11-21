@@ -3,6 +3,7 @@ class Endpoints {
 
   static const login = '$baseUrl/affiliates/login';
   static const register = '$baseUrl/affiliates/register';
+  static const getAffiliates = '$baseUrl/affiliates/list-network';
 
   static const getInventory = '$baseUrl/inventory/list';
   static const deleteInventory = '$baseUrl/inventory/delete-product';

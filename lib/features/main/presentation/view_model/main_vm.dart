@@ -1,6 +1,8 @@
 import 'package:bases2/features/acount/presentation/pages/account_pg.dart';
+import 'package:bases2/features/cataloge/presentation/pages/catalogue_pg.dart';
 import 'package:bases2/features/home/presentation/pages/home_pg.dart';
 import 'package:bases2/features/inventories/presentation/inventories_pg.dart';
+import 'package:bases2/features/referrals/presentation/pages/referrals_pg.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,6 +22,12 @@ class MainViewModel extends GetxController {
         return const InventoriesPage();
       case 2:
         return const AccountPage();
+
+      case 3:
+        return const ReferralsPage();
+      case 4:
+        return const CataloguePage();
+
       default:
         return const Text('Home');
     }
