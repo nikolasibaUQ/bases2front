@@ -80,7 +80,7 @@ class CustomConfirmationDialog {
                                       : responsive.dp(5)),
                               style: ButtonStyle(
                                   backgroundColor:
-                                      MaterialStateProperty.all<Color>(
+                                      WidgetStateProperty.all<Color>(
                                           MyColors.violetBlue)),
                               onPressed:
                                   onCancel ?? () => Navigator.pop(context),

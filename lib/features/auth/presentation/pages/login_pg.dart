@@ -2,6 +2,7 @@ import 'package:bases2/features/auth/presentation/view_model/auth_controller.dar
 import 'package:bases2/shared/colors/colors.dart';
 import 'package:bases2/shared/utils/image_paths.dart';
 import 'package:bases2/shared/utils/responsive.dart';
+import 'package:bases2/shared/widgets/custom_confirmation_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -264,7 +265,23 @@ class RegisterContent extends StatelessWidget {
           margin: EdgeInsets.only(top: responsive.hp(2)),
           padding: EdgeInsets.symmetric(horizontal: responsive.wp(5)),
           child: TextField(
-            onChanged: (value) => controller.changeUsername(value),
+            onChanged: (value) => controller.changeId(value),
+            decoration: InputDecoration(
+              hintText: 'Identificación',
+              fillColor: Colors.white,
+              filled: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: responsive.hp(2)),
+        Container(
+          margin: EdgeInsets.only(top: responsive.hp(2)),
+          padding: EdgeInsets.symmetric(horizontal: responsive.wp(5)),
+          child: TextField(
+            onChanged: (value) => controller.changeName(value),
             decoration: InputDecoration(
               hintText: 'Nombre',
               fillColor: Colors.white,
@@ -280,7 +297,7 @@ class RegisterContent extends StatelessWidget {
           margin: EdgeInsets.only(top: responsive.hp(2)),
           padding: EdgeInsets.symmetric(horizontal: responsive.wp(5)),
           child: TextField(
-            onChanged: (value) => controller.changePassword(value),
+            onChanged: (value) => controller.changeLastName(value),
             decoration: InputDecoration(
               hintText: 'Apellido',
               fillColor: Colors.white,
@@ -297,7 +314,7 @@ class RegisterContent extends StatelessWidget {
           margin: EdgeInsets.only(top: responsive.hp(2)),
           padding: EdgeInsets.symmetric(horizontal: responsive.wp(5)),
           child: TextField(
-            onChanged: (value) => controller.changePassword(value),
+            onChanged: (value) => controller.changeEmail(value),
             decoration: InputDecoration(
               hintText: 'Correo',
               fillColor: Colors.white,
@@ -314,7 +331,7 @@ class RegisterContent extends StatelessWidget {
           margin: EdgeInsets.only(top: responsive.hp(2)),
           padding: EdgeInsets.symmetric(horizontal: responsive.wp(5)),
           child: TextField(
-            onChanged: (value) => controller.changePassword(value),
+            onChanged: (value) => controller.changePhone(value),
             decoration: InputDecoration(
               hintText: 'Teléfono',
               fillColor: Colors.white,
@@ -331,7 +348,7 @@ class RegisterContent extends StatelessWidget {
           margin: EdgeInsets.only(top: responsive.hp(2)),
           padding: EdgeInsets.symmetric(horizontal: responsive.wp(5)),
           child: TextField(
-            onChanged: (value) => controller.changePassword(value),
+            onChanged: (value) => controller.changeAddress(value),
             decoration: InputDecoration(
               hintText: 'Dirección',
               fillColor: Colors.white,
@@ -348,7 +365,7 @@ class RegisterContent extends StatelessWidget {
           margin: EdgeInsets.only(top: responsive.hp(2)),
           padding: EdgeInsets.symmetric(horizontal: responsive.wp(5)),
           child: TextField(
-            onChanged: (value) => controller.changePassword(value),
+            onChanged: (value) => controller.changeCity(value),
             decoration: InputDecoration(
               hintText: 'Ciudad (1 al 5)',
               fillColor: Colors.white,
@@ -366,7 +383,7 @@ class RegisterContent extends StatelessWidget {
           margin: EdgeInsets.only(top: responsive.hp(2)),
           padding: EdgeInsets.symmetric(horizontal: responsive.wp(5)),
           child: TextField(
-            onChanged: (value) => controller.changePassword(value),
+            onChanged: (value) => controller.changeReference(value),
             decoration: InputDecoration(
               hintText: 'Código',
               fillColor: Colors.white,
@@ -388,8 +405,22 @@ class RegisterContent extends StatelessWidget {
                 side: BorderSide(color: MyColors.violetBlue),
               ),
             ),
-            onPressed: () async {
-              await controller.login();
+            onPressed: () {
+              final subtitle = 'Nombre: ${controller.name.value.text}'
+                  '\n Apellido: ${controller.lastName.value.text}'
+                  '\n Email: ${controller.email.value.text}'
+                  '\n Teléfono: ${controller.phone.value.text}'
+                  '\n Dirección: ${controller.address.value.text}'
+                  '\n Ciudad: ${controller.city.value.text}'
+                  '\n Referido: ${controller.reference.value.text}'
+                  '\n Usuario: ${controller.username.value.text}'
+                  '\n Contraseña: ${controller.password.value.text}';
+
+              CustomConfirmationDialog(
+                  context: context,
+                  title: 'Tus datos son correctos ?',
+                  subtitle: subtitle,
+                  onAccept: () async => await controller.register());
             },
             child: Text(
               'Registrarme',

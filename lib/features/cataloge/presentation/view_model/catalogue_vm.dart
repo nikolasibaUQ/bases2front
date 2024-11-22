@@ -1,3 +1,7 @@
+import 'package:bases2/features/auth/data/datasources/local/local_auth.dart';
+import 'package:bases2/features/auth/data/datasources/remote/auth_api.dart';
+import 'package:bases2/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:bases2/features/auth/domain/repositories/auth_repository.dart';
 import 'package:bases2/features/cataloge/data/datasource/remote/catalogue_api.dart';
 import 'package:bases2/features/cataloge/data/repositories/catalogue_repository_impl.dart';
 import 'package:bases2/features/cataloge/domain/entities/product.dart';
@@ -7,6 +11,8 @@ import 'package:get/get.dart';
 class CatalogueViewModel extends GetxController {
   final CatalogueRepository repository =
       CatalogueRepositoryImpl(catalogueApi: CatalogueApi());
+  final AuthRepository _authRepository =
+      AuthRepositoryImpl(authApi: AuthApi(), localAuth: LocalAuth());
 
   RxMap<dynamic, dynamic> catalogue = <dynamic, dynamic>{}.obs;
   RxList<Producto> products = <Producto>[].obs;
@@ -45,26 +51,48 @@ class CatalogueViewModel extends GetxController {
 
     for (var element in products) {
       totalPrice.value +=
-          int.parse(element.precio) * catalogue[element.idProducto];
+          double.parse(element.precio) * catalogue[element.idProducto];
     }
   }
 
   Future<void> buyProducts() async {
-    //   final json= catalogue.entries.map((e) => {
-    //     'idProducto': e.key,
-    //     'cantidad': e.value,
-    //   }).toList();
+    final user = await _authRepository.getUserData();
+    final List<Map<String, dynamic>> listProducts = <Map<String, dynamic>>[];
+    for (var element in catalogue.keys) {
+      if (catalogue[element] > 0) {
+        listProducts.add({
+          'idProducto': element,
+          'cantidad': catalogue[element],
+        });
+      }
+    }
+    if (listProducts.isEmpty) {
+      Get.snackbar('Error', 'No hay productos seleccionados');
+      return;
+    }
 
-    // final result = await repository.buyProducts(json);
-    // result.fold(
-    //   (left) => Get.snackbar('Error', left.toString()),
-    //   (rigth) {
-    //     Get.snackbar('Compra exitosa', 'Compra realizada con exito');
-    //     catalogue.clear();
-    //     totalPrice.value = 0.0;
-    //   },
-    // );
+    final json = {
+      'fechaVenta': DateTime.now().toString().substring(0, 10),
+      'valor': totalPrice.value,
+      'idAfiliado': user!.id,
+      'listaProductos': listProducts,
+    };
+
+    final result = await repository.buyProducts(
+      json: json,
+    );
+
+    result.fold(
+      (left) => Get.snackbar('Error', left.toString()),
+      (rigth) {
+        Get.snackbar('Compra Exitosa', rigth.toString());
+        catalogue.clear();
+        totalPrice.value = 0.0;
+        initialCatalogue();
+      },
+    );
   }
+
   static CatalogueViewModel get finOrInitialized {
     try {
       return Get.find();

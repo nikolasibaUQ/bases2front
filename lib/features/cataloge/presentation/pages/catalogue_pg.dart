@@ -1,6 +1,7 @@
 import 'package:bases2/features/cataloge/presentation/view_model/catalogue_vm.dart';
 import 'package:bases2/shared/colors/colors.dart';
 import 'package:bases2/shared/utils/responsive.dart';
+import 'package:bases2/shared/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
@@ -47,7 +48,9 @@ class CataloguePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    'Total a pagar: \$ ${controller.totalPrice}',
+                    'Total a pagar: \$ ${Utils.getFormattedCurrency(
+                      controller.totalPrice.value,
+                    )}',
                     style: TextStyle(
                         color: MyColors.primary,
                         fontSize: responsive.fpw(25),
@@ -58,7 +61,7 @@ class CataloguePage extends StatelessWidget {
                       backgroundColor: MyColors.primary,
                       minimumSize: Size(responsive.wp(30), responsive.hp(8)),
                     ),
-                    onPressed: () {},
+                    onPressed: () async => await controller.buyProducts(),
                     child: Text(
                       'Comprar',
                       style: TextStyle(
@@ -113,7 +116,7 @@ _productCard(responsive, controller, product) {
                       fontWeight: FontWeight.w400),
                 ),
                 Text(
-                  '\$ ${product.precio}',
+                  '\$ ${Utils.getFormattedCurrency(double.parse(product.precio))}',
                   style: TextStyle(
                       color: Colors.red,
                       fontSize: responsive.fpw(16),

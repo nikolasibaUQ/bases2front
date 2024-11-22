@@ -46,8 +46,16 @@ class InventoriesViewModel extends GetxController {
 
   Future<void> deleteInventory(Inventory inventory) async {
     final user = await _authRepository.getUserData();
+
+    if (user!.idnivel != 1) {
+      Get.snackbar(
+          backgroundColor: Colors.red,
+          'Error',
+          'No tienes permisos para crear nuevos productos');
+      return;
+    }
     final result = await _inventoryRepository.deleteInventory(
-        idProduct: inventory.idProducto, idUser: user!.id);
+        idProduct: inventory.idProducto, idUser: user.id);
 
     result.fold((left) async {
       Get.close(1);

@@ -1,6 +1,7 @@
 import 'package:bases2/core/either/either.dart';
 import 'package:bases2/features/auth/data/datasources/local/local_auth.dart';
 import 'package:bases2/features/auth/data/datasources/remote/auth_api.dart';
+import 'package:bases2/features/auth/domain/entities/register.dart';
 import 'package:bases2/features/auth/domain/entities/user_data.dart';
 import 'package:bases2/features/auth/domain/repositories/auth_repository.dart';
 
@@ -19,8 +20,8 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Exception, dynamic>> register() {
-    throw UnimplementedError();
+  Future<Either<Exception, String>> register({required Registro register}) {
+    return authApi.register(register: register);
   }
 
   @override

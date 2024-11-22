@@ -13,4 +13,9 @@ class CatalogueRepositoryImpl implements CatalogueRepository {
   Future<Either<Exception, List<Producto>>> getCatalogue() {
     return catalogueApi.getProducts();
   }
+
+  @override
+  Future<Either<Exception, dynamic>> buyProducts({required Map json}) {
+    return catalogueApi.buyProducts(json: json);
+  }
 }

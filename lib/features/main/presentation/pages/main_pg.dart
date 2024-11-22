@@ -82,19 +82,19 @@ class MegaMenuAppbar extends StatelessWidget {
           SizedBox(height: responsive.hp(3.5)),
           ListTile(
             onTap: () => mainViewModel.modifyIndex(0),
-            title: Text('Home', style: style),
+            title: Text('Mi cuenta', style: style),
           ),
           SizedBox(height: responsive.hp(3.5)),
           ListTile(
             titleTextStyle: style,
             onTap: () => mainViewModel.modifyIndex(1),
-            title: Text('Inventories', style: style),
+            title: Text('Inventario', style: style),
           ),
           SizedBox(height: responsive.hp(3.5)),
           ListTile(
             titleTextStyle: style,
             onTap: () => mainViewModel.modifyIndex(2),
-            title: Text('Mi cuenta', style: style),
+            title: Text('Catalogo', style: style),
           ),
           SizedBox(height: responsive.hp(3.5)),
           ListTile(
@@ -106,7 +106,7 @@ class MegaMenuAppbar extends StatelessWidget {
           ListTile(
             titleTextStyle: style,
             onTap: () => mainViewModel.modifyIndex(4),
-            title: Text('Catalogo de  productos', style: style),
+            title: Text('Despachos', style: style),
           ),
         ],
       ),
